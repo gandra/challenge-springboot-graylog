@@ -7,13 +7,23 @@ Graylog is configured via `GELF TCP Async`.
 ## Challenge 1:
 Deploy all in kubernetes on ubuntu. 
    
-#### Sucess Criteria: 
+#### Success Criteria: 
 Generate logs in app. See logs appears in graylog.  
 
 ## Challenge 2:
-Upgrade containers to lates: mongo, graylog and elasticsearch.
-#### Sucess Criteria:
+Upgrade containers to latest mongo, graylog and elasticsearch.
+#### Success Criteria:
 You can bring env `up with docker-compose` with upgraded containers + `Challenge 1 Sucess Criteria`
+
+## Challenge 3:
+Deploy mongodb in kubernetes cluster using MongoDB Community Kubernetes Operator and separate read and write over mongo nodes
+#### Success Criteria:
+- Instruction how to setup k8s on ubuntu and java 11 or 15
+- All deployed on k8s on ubuntu: demoapp, mongodb, graylog, elasticsearch
+- mongodb deployed in cluster with 3 nodes using MongoDB Community Kubernetes Operator
+- Write to mongo over master node
+- Read from replica nodes
+
 
 ## Generate logs
 
@@ -46,6 +56,12 @@ Open in the browser localhost:8080/hello
 
 ### 5. See message in in Graylog page  
 On the Graylog page click on `Show received messages` button. Messages should appear.
+
+
+## Swagger
+
+You can find endpoints info on swagger:  
+http://localhost:8080/swagger-ui.html#
 
 
 ## Local environment, docker-compose

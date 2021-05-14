@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.MessageService;
 import com.example.dto.Message;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "Message Controller", description = "REST APIs related to Message Entity.")
 @Controller
 public class MessageController {
 
@@ -20,20 +22,20 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping(value = "/messages")
+    @GetMapping("/messages")
     @ResponseBody
-    public List<Message> getAllStudents() {
+    public List<Message> getAll() {
         return messageService.findAll();
     }
 
-    @PostMapping(value = "/messages")
+    @PostMapping("/messages")
     @ResponseBody
     public ResponseEntity<?> saveOrUpdate(@RequestBody Message message) {
         messageService.saveOrUpdate(message);
         return new ResponseEntity("Message added successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/messages/{id}")
+    @DeleteMapping("/messages/{id}")
     @ResponseBody
     public ResponseEntity<?> deleteById(@PathVariable String id) {
         messageService.deleteById(id);
