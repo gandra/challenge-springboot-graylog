@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo-graylog-springboot</artifactId>
+	<artifactId>challenge-springboot-graylog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-graylog-springboot</name>
+	<name>challenge-springboot-graylog</name>
 	<description>Demo project for Spring Boot with Graylog</description>
 	<properties>
 		<java.version>11</java.version>
