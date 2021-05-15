@@ -1,8 +1,13 @@
 # Springboot demo app with graylog in docker
 
 This is demo springboot app with graylog.
-At the moment app sah only 1 dummy endpoint /hello with returns hardcoded string and logs some message using logback.
 Graylog is configured via `GELF TCP Async`.
+For logging we use logback.
+At the moment environment is settled up using `docker-compose` and there 4 endpoints to test:
+- `GET /hello`. This one generates info and debug logs
+- `GET /messages`
+- `POST /messages`
+- `DELETE /messages/{id}`
 
 ## Challenge 1:
 Deploy all in kubernetes(`microk8s`). 
