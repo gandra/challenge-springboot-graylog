@@ -5,25 +5,35 @@ At the moment app sah only 1 dummy endpoint /hello with returns hardcoded string
 Graylog is configured via `GELF TCP Async`.
 
 ## Challenge 1:
-Deploy all in kubernetes on ubuntu. 
+Deploy all in kubernetes(microk8s). 
    
-#### Success Criteria: 
+### Success Criteria: 
 Generate logs in app. See logs appears in graylog.  
 
+### Delivery:
+PR on branch `challenge1`.
+
 ## Challenge 2:
-Upgrade containers to latest mongo, graylog and elasticsearch.
-#### Success Criteria:
+Upgrade containers to the latest mongo, graylog and elasticsearch.
+
+### Success Criteria:
 You can bring env `up with docker-compose` with upgraded containers + `Challenge 1 Sucess Criteria`
+
+### Delivery: 
+PR on branch `challenge2`.
 
 ## Challenge 3:
 Deploy mongodb in kubernetes cluster using MongoDB Community Kubernetes Operator and separate read and write over mongo nodes
-#### Success Criteria:
-- Instruction how to setup k8s on ubuntu and java 11 or 15
-- All deployed on k8s on ubuntu: demoapp, mongodb, graylog, elasticsearch
+
+### Success Criteria:
+- All deployed on kubernetes(microk8s): demoapp, mongodb, graylog, elasticsearch
 - mongodb deployed in cluster with 3 nodes using MongoDB Community Kubernetes Operator
 - Write to mongo over master node
 - Read from replica nodes
+- Readme with info how to setup and deploy
 
+### Delivery:
+PR on branch `challenge3`.
 
 ## Generate logs
 
