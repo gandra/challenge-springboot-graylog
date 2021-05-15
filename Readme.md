@@ -26,12 +26,14 @@ You can bring env `up with docker-compose` with upgraded containers + `Challenge
 
 ## Challenge 3:
 Deploy mongodb in kubernetes cluster using MongoDB Community Kubernetes Operator and separate read and write over mongo nodes
+Add logging about reading and writing operations to mongodb.
 
 ### Success Criteria:
 - All deployed on kubernetes(`microk8s`): demoapp, mongodb, graylog, elasticsearch
 - mongodb deployed in cluster with 3 nodes using MongoDB Community Kubernetes Operator
 - Write to mongo over master node
 - Read from replica nodes
+- Both read and write operations to mongodb are logged (via logger) and visible in app console/output
 - Readme with info how to setup and deploy
 
 ### Delivery:
@@ -119,4 +121,4 @@ docker system prune --all --force --volumes
 
 ## Local environment, MicroK8s
 
-For local SETUP OF `MicroK8s` CHECK https://microk8s.io/
+For local setup of `MicroK8s` check https://microk8s.io/
