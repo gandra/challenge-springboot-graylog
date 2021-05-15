@@ -5,13 +5,14 @@ At the moment app sah only 1 dummy endpoint /hello with returns hardcoded string
 Graylog is configured via `GELF TCP Async`.
 
 ## Challenge 1:
-Deploy all in kubernetes(microk8s). 
+Deploy all in kubernetes(`microk8s`). 
    
 ### Success Criteria: 
 Generate logs in app. See logs appears in graylog.  
 
 ### Delivery:
-PR on branch `challenge1`.
+- PR on branch `challenge1`
+- Readme with info how to setup and deploy
 
 ## Challenge 2:
 Upgrade containers to the latest mongo, graylog and elasticsearch.
@@ -20,20 +21,22 @@ Upgrade containers to the latest mongo, graylog and elasticsearch.
 You can bring env `up with docker-compose` with upgraded containers + `Challenge 1 Sucess Criteria`
 
 ### Delivery: 
-PR on branch `challenge2`.
+- PR on branch `challenge2`
+- Readme with info how to setup and deploy
 
 ## Challenge 3:
 Deploy mongodb in kubernetes cluster using MongoDB Community Kubernetes Operator and separate read and write over mongo nodes
 
 ### Success Criteria:
-- All deployed on kubernetes(microk8s): demoapp, mongodb, graylog, elasticsearch
+- All deployed on kubernetes(`microk8s`): demoapp, mongodb, graylog, elasticsearch
 - mongodb deployed in cluster with 3 nodes using MongoDB Community Kubernetes Operator
 - Write to mongo over master node
 - Read from replica nodes
 - Readme with info how to setup and deploy
 
 ### Delivery:
-PR on branch `challenge3`.
+- PR on branch `challenge3`.
+- Readme with info how to setup and deploy
 
 ## Generate logs
 
@@ -113,3 +116,7 @@ To remove all resouces, cleanup execute:
 ```
 docker system prune --all --force --volumes
 ```
+
+## Local environment, MicroK8s
+
+For local SETUP OF `MicroK8s` CHECK https://microk8s.io/
