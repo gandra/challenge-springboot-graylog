@@ -18,12 +18,16 @@
 		<swagger-annotations.version>1.5.21</swagger-annotations.version>
 		<swagger-models.version>1.5.21</swagger-models.version>
 		<jkube.generator.name>192.168.0.15:32000/${artifactId}:${project.version}</jkube.generator.name>
-		<!-- <jkube.enricher.jkube-container-env-java-options.disable>true</jkube.enricher.jkube-container-env-java-options.disable> -->
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.7</version>
 		</dependency>
 
 		<dependency>
