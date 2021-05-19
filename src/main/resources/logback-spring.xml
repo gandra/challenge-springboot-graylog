@@ -20,7 +20,7 @@
 
     <appender name="KUBERNETES_GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
         <!-- Use Graylog kubernetes service name -->
-        <graylogHost>graylog</graylogHost>
+        <graylogHost>graylog.graylog.svc.cluster.local</graylogHost>
         <graylogPort>12201</graylogPort>
     </appender>
 
