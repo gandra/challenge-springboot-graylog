@@ -25,7 +25,7 @@ spec:
       containers:
         - env:
             - name: GRAYLOG_HTTP_EXTERNAL_URI
-              value: http://192.168.0.15:9001/
+              value: http://localhost:9001/
             - name: GRAYLOG_PASSWORD_SECRET
               value: somepasswordpepper
             - name: GRAYLOG_ROOT_PASSWORD_SHA2

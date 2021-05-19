@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
-        <graylogHost>192.168.0.15</graylogHost>
+        <graylogHost>localhost</graylogHost>
         <graylogPort>12201</graylogPort>
     </appender>
 
