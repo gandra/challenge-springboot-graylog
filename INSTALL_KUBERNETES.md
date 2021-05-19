@@ -25,9 +25,9 @@ microk8s start
 # enable kubeconfig
 install kubectl https://kubernetes.io/docs/tasks/tools/
 
-microk8s config > .kube/config
+microk8s config > ~/.kube/config
 
-export KUBECONFIG=.kube/config
+export KUBECONFIG=~/.kube/config
 
 make sure kubectl works properly by using
 
@@ -46,7 +46,7 @@ kubectl apply -k config/rbac --namespace mongodb
 
 kubectl apply -f config/crd/bases/mongodbcommunity.mongodb.com_mongodbcommunity.yaml
 
-kubectl apply -k config/rbac/ --namespace msongodb
+kubectl apply -k config/rbac/ --namespace mongodb
 
 kubectl get role mongodb-kubernetes-operator --namespace mongodb
 
@@ -69,7 +69,10 @@ cd into you project directory:
 
 kubectl create secret generic example-mongodb-config --from-file=configuration_files/mongo/cluster-config.json --namespace mongodb
 
-kubectl delete pod example-mongodb-0 example-mongodb-1 example-mongodb-2
+# edit secret , replace with base64 encode :
+`kubectl get secrets -n mongodb example-mongodb-config -o yaml`
+
+kubectl delete pod example-mongodb-0 example-mongodb-1 example-mongodb-2 --namespace mongodb
 
 NOTE: cluster-config.json is in the configuration_files/mongo/ directory
 
@@ -91,7 +94,6 @@ After everything is up go into the graylog interface go into localhost:9001. use
 
 ## Deploy the API 
 mvn clean package k8s:build k8s:push k8s:resource k8s:deploy
-
 
 After that you should see data flow from pod logs. By making requests from API you can see the logs are visible from graylog.
  
