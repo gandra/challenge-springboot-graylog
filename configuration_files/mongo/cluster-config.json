@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "processes": [
+    {
+      "name": "example-mongodb-0",
+      "hostname": "example-mongodb-0.example-mongodb-svc.mongodb.svc.cluster.local",
+      "args2_6": {
+        "net": { "port": 27017 },
+        "replication": { "replSetName": "example-mongodb" },
+        "storage": { "dbPath": "/data" },
+        "storage.wiredTiger.engineConfig.journalCompressor": "zlib",
+        "systemLog": {
+          "destination": "file",
+          "path": "/var/log/mongodb-mms-automation/mongodb.log"
+        }
+      },
+      "featureCompatibilityVersion": "4.2",
+      "processType": "mongod",
+      "version": "4.2.6",
+      "authSchemaVersion": 5
+    },
+    {
+      "name": "example-mongodb-1",
+      "hostname": "example-mongodb-1.example-mongodb-svc.mongodb.svc.cluster.local",
+      "args2_6": {
+        "net": { "port": 27017 },
+        "replication": { "replSetName": "example-mongodb" },
+        "storage": { "dbPath": "/data" },
+        "storage.wiredTiger.engineConfig.journalCompressor": "zlib",
+        "systemLog": {
+          "destination": "file",
+          "path": "/var/log/mongodb-mms-automation/mongodb.log"
+        }
+      },
+      "featureCompatibilityVersion": "4.2",
+      "processType": "mongod",
+      "version": "4.2.6",
+      "authSchemaVersion": 5
+    },
+    {
+      "name": "example-mongodb-2",
+      "hostname": "example-mongodb-2.example-mongodb-svc.mongodb.svc.cluster.local",
+      "args2_6": {
+        "net": { "port": 27017 },
+        "replication": { "replSetName": "example-mongodb" },
+        "storage": { "dbPath": "/data" },
+        "storage.wiredTiger.engineConfig.journalCompressor": "zlib",
+        "systemLog": {
+          "destination": "file",
+          "path": "/var/log/mongodb-mms-automation/mongodb.log"
+        }
+      },
+      "featureCompatibilityVersion": "4.2",
+      "processType": "mongod",
+      "version": "4.2.6",
+      "authSchemaVersion": 5
+    }
+  ],
+  "replicaSets": [
+    {
+      "_id": "example-mongodb",
+      "members": [
+        {
+          "_id": 0,
+          "host": "example-mongodb-0",
+          "priority": 1,
+          "arbiterOnly": false,
+          "votes": 1
+        },
+        {
+          "_id": 1,
+          "host": "example-mongodb-1",
+          "priority": 1,
+          "arbiterOnly": false,
+          "votes": 1
+        },
+        {
+          "_id": 2,
+          "host": "example-mongodb-2",
+          "priority": 1,
+          "arbiterOnly": false,
+          "votes": 1
+        }
+      ],
+      "protocolVersion": "1"
+    }
+  ],
+  "auth": {
+    "usersWanted": [
+      {
+        "mechanisms": [],
+        "roles": [
+          { "role": "clusterAdmin", "db": "admin" },
+          { "role": "userAdminAnyDatabase", "db": "admin" }
+        ],
+        "user": "my-user",
+        "db": "admin",
+        "authenticationRestrictions": [],
+        "scramSha256Creds": {
+          "iterationCount": 15000,
+          "salt": "BmxNshzo0advpqKjcX2Yo7CcweZK8kxIutJGuQ==",
+          "serverKey": "FtB8Ny43gWiGxHUpFUWAELca6LjcJlBBEcrDnMyPwgw=",
+          "storedKey": "xLGT+PsUQWiAf2IVj2cU8HV+7W8ds0onhRGz0PfinJI="
+        },
+        "scramSha1Creds": {
+          "iterationCount": 10000,
+          "salt": "DGDqDXNc4qGew8g+zAiDfA==",
+          "serverKey": "CZS8R26USUE1fnQ3/vQ3TH2bAEw=",
+          "storedKey": "0oG7h2NELlyDWlh1aOqByfuhbec="
+        }
+      }
+    ],
+    "disabled": true,
+    "authoritativeSet": false,
+    "autoAuthMechanisms": ["SCRAM-SHA-256"],
+    "autoAuthMechanism": "SCRAM-SHA-256",
+    "deploymentAuthMechanisms": ["SCRAM-SHA-256"],
+    "autoUser": "mms-automation",
+    "key": "k9BBwdTRkiOG9bXabo7/zcoLoxx/mp4s3lQR7hoeGSKOHGqvmc8ce06cmd34y0ou5xiFIb+pAIwkyLsgNfMs3HllnpsfiUbhIR2XEa4aQfjmpL2pW/OFahqfzJFpb8o4lmwEePf7rVqcf4dWbptqy/Jed7M8uPlDgrpdjqv06m76mxsFdrfi67k/CYLtNsMlR6D4/O3XSMaTxq2cAQhjp0Wos/CxYm2JrhhyUHCgz3WlO7jCwtkPr7V7i7lAl/i6gF24NbzpdYV7cHuF0lgTWbdn0baP76Y7dIZ5y6V/oSKHTZHbVCESZnwNTk10ewtwIzUrrQPzrk0vchue8/Nq04cYBHyyh2phT0AR1cqGTKAmKEwb91BBFX1pigv3zudmapT4pH8eHsbvXe7/YuHU5D0k5gPzZBRzawDya0fSzRP4aVGE8X629CxA+jAUBdGoMM10e4LDEqY31KG3QnsOdyPZIKCk+IpASbFsaqIY8ZsOo1ZewQDfirEneh1GiWujeN85LCP+OntpfYjzTGviPXMMgafRFeHfz3mfGNb7fgxzOZI8MYjX1TF/FJBYaMF9lktbK27voU6hXE8sRAmfehi6cT9+oJxPoSjuzy4hTBbHpzAC/qUHLgv2wW98CKLjzdc1/1HKxlsaUm1bb+mQzuD4us4=",
+    "keyfile": "/var/lib/mongodb-mms-automation/authentication/keyfile",
+    "keyfileWindows": "%SystemDrive%\\MMSAutomation\\versions\\keyfile",
+    "autoPwd": "NLwzSbRo5h4hzaTx1yHu"
+  },
+  "tls": { "CAFilePath": "", "clientCertificateMode": "OPTIONAL" },
+  "mongoDbVersions": [
+    {
+      "name": "4.2.6",
+      "builds": [
+        {
+          "platform": "linux",
+          "url": "",
+          "gitVersion": "",
+          "architecture": "amd64",
+          "flavor": "rhel",
+          "minOsVersion": "",
+          "maxOsVersion": "",
+          "modules": []
+        },
+        {
+          "platform": "linux",
+          "url": "",
+          "gitVersion": "",
+          "architecture": "amd64",
+          "flavor": "ubuntu",
+          "minOsVersion": "",
+          "maxOsVersion": "",
+          "modules": []
+        }
+      ]
+    }
+  ],
+  "backupVersions": [],
+  "monitoringVersions": [],
+  "options": { "downloadBase": "/var/lib/mongodb-mms-automation" }
+}

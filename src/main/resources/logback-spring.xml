@@ -18,9 +18,28 @@
         <appender-ref ref="GELF" />
     </appender>
 
-    <root level="debug">
-        <appender-ref ref="ASYNC GELF" />
-        <appender-ref ref="STDOUT" />
-    </root>
+    <appender name="KUBERNETES_GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
+        <!-- Use Graylog kubernetes service name -->
+        <graylogHost>graylog.graylog.svc.cluster.local</graylogHost>
+        <graylogPort>12201</graylogPort>
+    </appender>
+
+    <!-- Use AsyncAppender for kubernetes -->
+    <appender name="KUB ASYNC GELF" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="KUBERNETES_GELF" />
+    </appender>
+
+    <springProfile name="kubernetes">
+        <root level="INFO">
+            <appender-ref ref="KUB ASYNC GELF" />
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="default">
+        <root level="INFO">
+            <appender-ref ref="ASYNC GELF" />
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
 
 </configuration>

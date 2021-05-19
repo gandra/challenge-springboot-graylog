@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  labels:
+    io.kompose.service: graylog
+  name: graylog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: graylog
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      labels:
+        io.kompose.service: graylog
+    spec:
+      containers:
+        - env:
+            - name: GRAYLOG_HTTP_EXTERNAL_URI
+              value: http://localhost:9001/
+            - name: GRAYLOG_PASSWORD_SECRET
+              value: somepasswordpepper
+            - name: GRAYLOG_ROOT_PASSWORD_SHA2
+              value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+          image: graylog/graylog:3.1
+          name: graylog
+          ports:
+            - containerPort: 9000
+            - containerPort: 1514
+            - containerPort: 1514
+              protocol: UDP
+            - containerPort: 12201
+            - containerPort: 12201
+              protocol: UDP
+          volumeMounts:
+            - mountPath: /usr/share/graylog/data/journal
+              name: challengespringbootgraylog-graylog-journal
+      restartPolicy: Always
+      volumes:
+        - name: challengespringbootgraylog-graylog-journal
+          persistentVolumeClaim:
+            claimName: challengespringbootgraylog-graylog-journal
