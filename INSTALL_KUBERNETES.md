@@ -93,22 +93,25 @@ cd into you project directory:(exit from mongodb-kubernetes-operator directory)
 
 ### Elasticsearch And Graylog
 
+```
 cd configuration_files/graylog
-
 kubectl create ns graylog
-
 kubectl apply -f . -n graylog
-
 kubectl expose deployment/elasticsearch --port=9200 --target-port=9200 --protocol=TCP -n graylog
+```
 
+# After this command you can acces graylog dashboard in browser
+```
 kubectl port-forward services/graylog 9001:9001 -n graylog
+```
 
-This command redirects the ClusterIP service to external world.
-
-After everything is up go into the graylog interface go into localhost:9001. username/password admin/admin. go into the system/inputs tab in graylog interface  and set gelf tcp to 12201, gelf udp to 12201, syslog udp to 1514 and syslog tcp to 1514. 
+This command redirects the ClusterIP service to external world.  
+After everything is up go into the graylog interface go into http://localhost:9001. username/password admin/admin. go into the system/inputs tab in graylog interface  and set gelf tcp to 12201, gelf udp to 12201, syslog udp to 1514 and syslog tcp to 1514. 
 
 ## Deploy the API 
+```
 mvn clean package k8s:build k8s:push k8s:resource k8s:deploy
+```
 
 After that you should see data flow from pod logs. By making requests from API you can see the logs are visible from graylog.
  
