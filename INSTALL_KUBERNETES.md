@@ -75,11 +75,11 @@ kubectl get secrets -n mongodb
 kubectl get secrets -n mongodb example-mongodb-config
 ```
 
-If secret not deleted edit secret, replace with base64 encoded content of `~/.kube/config`???????:
+If secret not deleted edit secret, replace with base64 encoded content of `configuration_files/mongo/cluster-config.json`:
 ```
-cat ~/.kube/config > kube_config.txt
+cat configuration_files/mongo/cluster-config.json > tempfile.txt
 ```
-Encode with `base64` content of `kube_config.txt`?????
+Encode with `base64` content of `tempfile.txt`
 and then:
 ```
 kubectl edit secret example-mongodb-config -n mongodb
