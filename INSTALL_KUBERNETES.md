@@ -25,56 +25,71 @@ microk8s start
 # enable kubeconfig
 install kubectl https://kubernetes.io/docs/tasks/tools/
 
+```
 microk8s config > ~/.kube/config
-
 export KUBECONFIG=~/.kube/config
+```
 
 make sure kubectl works properly by using
 
+```
 kubectl get pods -A
+```
 
 if you see an output that is not an error you are good to go.
 
 ## Install mongodb operator
+
+```
 git clone https://github.com/mongodb/mongodb-kubernetes-operator.git
-
+cd mongodb-kubernetes-operator
 kubectl create ns mongodb
-
 kubectl apply -f deploy/clusterwide
-
 kubectl apply -k config/rbac --namespace mongodb
-
 kubectl apply -f config/crd/bases/mongodbcommunity.mongodb.com_mongodbcommunity.yaml
-
 kubectl apply -k config/rbac/ --namespace mongodb
-
 kubectl get role mongodb-kubernetes-operator --namespace mongodb
-
 kubectl get rolebinding mongodb-kubernetes-operator --namespace mongodb
-
 kubectl get serviceaccount mongodb-kubernetes-operator --namespace mongodb
-
 kubectl create -f config/manager/manager.yaml --namespace mongodb
-
 kubectl get pods --namespace mongodb
+```
 
+### Edit config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml to replica and password
 
-## Edit config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml to replica and password
-
+```
 kubectl apply -f config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml --namespace mongodb
-
 kubectl delete secret example-mongodb-config -n mongodb 
+```
 
-cd into you project directory:
 
+Check if secret is deleted ad if deleted execute:
+```
 kubectl create secret generic example-mongodb-config --from-file=configuration_files/mongo/cluster-config.json --namespace mongodb
+```
+**NOTE**: `cluster-config.json` is in the `configuration_files/mongo/` directory
 
-# edit secret , replace with base64 encode :
-`kubectl get secrets -n mongodb example-mongodb-config -o yaml`
+There is some bug and maybe secret not deleted. Check with commands if secret deleted: 
+```
+kubectl get secrets -n mongodb
+kubectl get secrets -n mongodb example-mongodb-config
+```
+
+If secret not deleted edit secret, replace with base64 encoded content of `~/.kube/config`???????:
+```
+cat ~/.kube/config > kube_config.txt
+```
+Encode with `base64` content of `kube_config.txt`?????
+and then:
+```
+kubectl edit secret example-mongodb-config -n mongodb
+```
+and replace `data` value with encoded value, save and exit from file.
 
 kubectl delete pod example-mongodb-0 example-mongodb-1 example-mongodb-2 --namespace mongodb
 
-NOTE: cluster-config.json is in the configuration_files/mongo/ directory
+cd into you project directory:(exit from mongodb-kubernetes-operator directory)
+`cd ..`
 
 ### Elasticsearch And Graylog
 
