@@ -58,7 +58,7 @@ kubectl get pods --namespace mongodb
 ### Edit config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml to replica and password
 
 ```
-kubectl apply -f config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml --namespace mongodb
+kubectl apply -f config/samples/mongodb.com_v1_mongodbcommunity_cr.yaml --namespace mongodb 
 kubectl delete secret example-mongodb-config -n mongodb 
 ```
 
@@ -72,7 +72,7 @@ kubectl create secret generic example-mongodb-config --from-file=configuration_f
 There is some bug and maybe secret not deleted. Check with commands if secret deleted: 
 ```
 kubectl get secrets -n mongodb
-kubectl get secrets -n mongodb example-mongodb-config
+kubectl get secrets -n mongodb example-mongodb-config 
 ```
 
 If secret not deleted edit secret, replace with base64 encoded content of `configuration_files/mongo/cluster-config.json`:
@@ -106,13 +106,23 @@ kubectl port-forward services/graylog 9001:9001 -n graylog
 ```
 
 This command redirects the ClusterIP service to external world.  
-After everything is up go into the graylog interface go into http://localhost:9001. username/password admin/admin. go into the system/inputs tab in graylog interface  and set gelf tcp to 12201, gelf udp to 12201, syslog udp to 1514 and syslog tcp to 1514. 
+After everything is up go into the graylog interface go into http://localhost:9001. username/password admin/admin. 
+Go into the system/inputs tab in graylog interface  and set:
+  - gelf tcp to 12201 
+  - gelf udp to 12201
+  - syslog udp to 1514 
+  - syslog tcp to 1514
+
 
 ## Deploy the API 
 ```
 mvn clean package k8s:build k8s:push k8s:resource k8s:deploy
 ```
 
-After that you should see data flow from pod logs. By making requests from API you can see the logs are visible from graylog.
- 
- 
+After that you should see data flow from pod logs. 
+By making requests from API you can see the logs are visible from graylog.
+
+To find port where the app run execute:  
+```
+kubectl describe service/demoap
+```

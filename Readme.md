@@ -9,51 +9,17 @@ At the moment environment is settled up using `docker-compose` and there 4 endpo
 - `POST /messages`
 - `DELETE /messages/{id}`
 
-## Challenge 1:
-Deploy all in kubernetes(`microk8s`). 
-   
-### Success Criteria: 
-Generate logs in app. See logs appears in graylog.  
 
-### Delivery:
-- PR on branch `challenge1`
-- Readme with info how to setup and deploy
-
-## Challenge 2:
-Upgrade containers to the latest mongo, graylog and elasticsearch.
-
-### Success Criteria:
-You can bring env `up with docker-compose` with upgraded containers + `Challenge 1 Sucess Criteria`
-
-### Delivery: 
-- PR on branch `challenge2`
-- Readme with info how to setup and deploy
-
-## Challenge 3:
-Deploy mongodb in kubernetes cluster using MongoDB Community Kubernetes Operator and separate read and write over mongo nodes
-Add logging about reading and writing operations to mongodb.
-
-### Success Criteria:
-- All deployed on kubernetes(`microk8s`): demoapp, mongodb, graylog, elasticsearch
-- mongodb deployed in cluster with 3 nodes using MongoDB Community Kubernetes Operator
-- Write to mongo over master node
-- Read from replica nodes
-- Both read and write operations to mongodb are logged (via logger) and visible in app console/output
-- Readme with info how to setup and deploy
-
-### Delivery:
-- PR on branch `challenge3`.
-- Readme with info how to setup and deploy
-
-## Generate logs
+## Generate and see logs in Graylog 
 
 In order to generate logs and see them in the graylog web interface do following:  
 
-### 1. Bring up mongodb, elasticsearch anf graylog executing:
+### 1. Bring up mongodb, elasticsearch and graylog executing:
 
 ```
 docker-compose up -d --build
 ```
+
 
 Wait to see message `Graylog server up and running`.
 
@@ -124,6 +90,6 @@ To remove all resouces, cleanup execute:
 docker system prune --all --force --volumes
 ```
 
-## Local environment, MicroK8s
+## Kubernetes, MicroK8s
 
-For local setup of `MicroK8s` check https://microk8s.io/
+For local setup of kubernetes with `MicroK8s` check [INSTALL_KUBERNETES.md](INSTALL_KUBERNETES.md)
